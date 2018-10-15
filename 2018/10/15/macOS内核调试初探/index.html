@@ -86,13 +86,13 @@
 <meta property="og:site_name" content="SID3&#39;s Blog">
 <meta property="og:description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.安装内核调试工具包（KDK） 在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.然后在虚拟">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/macOS内核调试初探/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/macOS内核调试初探/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/2.png">
 <meta property="og:updated_time" content="2018-10-15T09:01:09.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS内核调试初探">
 <meta name="twitter:description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.安装内核调试工具包（KDK） 在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.然后在虚拟">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/macOS内核调试初探/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/1.png">
 
 
 
@@ -324,9 +324,9 @@
       
         <p>最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb.</p>
 <h3 id="1-安装内核调试工具包（KDK）"><a href="#1-安装内核调试工具包（KDK）" class="headerlink" title="1.安装内核调试工具包（KDK）"></a>1.安装内核调试工具包（KDK）</h3><ol>
-<li><p>在 <a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a> 这一网站上下载需要的KDK.<br><img src="macOS内核调试初探/1.png" alt="KDK下载界面"><br>然后在虚拟机中安装</p>
+<li><p>在 <a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a> 这一网站上下载需要的KDK.<br><img src="/2018/10/15/macOS内核调试初探/1.png" alt="KDK下载界面"><br>然后在虚拟机中安装</p>
 </li>
-<li><p>关闭系统SIP，开机的时候按Command+R进入恢复模式，然后在终端输入csrutil disable，重启，查看SIP是否关闭.<br><img src="macOS内核调试初探/2.png" alt="查看SIP是否关闭"></p>
+<li><p>关闭系统SIP，开机的时候按Command+R进入恢复模式，然后在终端输入csrutil disable，重启，查看SIP是否关闭.<br><img src="/2018/10/15/macOS内核调试初探/2.png" alt="查看SIP是否关闭"></p>
 </li>
 <li><p>替换内核，KDK安装在/Library/Developer/下，将其目录下的kernel.development拷贝到/System/Library/Kernels/中。<br>在终端中执行命令：</p>
 </li>
