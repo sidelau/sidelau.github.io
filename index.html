@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,16 +53,16 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-head.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/head-32x32.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/head-16x16.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="/images/head.png?v=5.1.4" color="#222">
 
 
 
@@ -93,9 +93,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -183,6 +183,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -300,17 +320,16 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo ne
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/15/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -428,40 +447,19 @@
       
         
           
-            <p>最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb.</p>
-<h3 id="1-安装内核调试工具包（KDK）"><a href="#1-安装内核调试工具包（KDK）" class="headerlink" title="1.安装内核调试工具包（KDK）"></a>1.安装内核调试工具包（KDK）</h3><ol>
-<li><p>在 <a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a> 这一网站上下载需要的KDK.<br><img src="macOS内核调试初探/1.png" alt="KDK下载界面"><br>然后在虚拟机中安装</p>
-</li>
-<li><p>关闭系统SIP，开机的时候按Command+R进入恢复模式，然后在终端输入csrutil disable，重启，查看SIP是否关闭.<br><img src="macOS内核调试初探/2.png" alt="查看SIP是否关闭"></p>
-</li>
-<li><p>替换内核，KDK安装在/Library/Developer/下，将其目录下的kernel.development拷贝到/System/Library/Kernels/中。<br>在终端中执行命令：</p>
-</li>
-</ol>
-<p><code>cp /Library/Developer/KDKs/KDK_10.12.6_16G29.kdk/System/Library/Kernels/kernel.development /System/Library/Kernels/</code></p>
-<p>  然后输入命令设置boot-args，使用nvram将虚拟机设置成调试模式：</p>
-<p><code>sudo nvram boot-args=&quot;debug=0x141 kext-dev-mode=1 kcsuffix=development pmuflags=1 -v&quot;</code></p>
-<ul>
-<li><p>boot-args：系统的启动参数</p>
-</li>
-<li><p>debug=0×141，表示系统可以进行远程链接调试</p>
-</li>
-<li><p>kext-dev-mode=1允许加载未签名kext</p>
-</li>
-<li><p>kcsuffix=development 允许我们启动系统，通过development，与之前我们copy到/Systems/Library/Kernel下的kernel.development对应，如果我们之前拷贝的是kernel.debug，那么这里填kcsuffic=debug</p>
-</li>
-<li><p>pmuflags=1关闭定时器</p>
-</li>
-<li><p>-v显示内核加载信息.</p>
-<p>然后再清除kext缓存</p>
-</li>
-</ul>
-<p><code>sudo kextcache -invalidate</code></p>
-<p>  目的是让虚拟机系统的kext cache无效，使用新的内核调试.</p>
-<ol start="4">
-<li>查看虚拟机的网络配置信息，方便之后的远程连接调试，使用命令ifconfig即可查看.</li>
-</ol>
+          最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb.
+1.安装内核调试工具包（KDK）
+在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.然后在虚拟机中安装
 
-          
+关闭系统SIP，开机的时候按Command+R进入恢复
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/15/macOS内核调试初探/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -600,7 +598,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
