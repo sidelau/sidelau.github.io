@@ -47,6 +47,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -81,20 +125,23 @@
 
 
 
-<meta name="description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.安装内核调试工具包（KDK） 在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.">
+<meta name="description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.搭建调试环境在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="macOS内核调试初探">
 <meta property="og:url" content="http://yoursite.com/2018/10/15/macOS内核调试初探/index.html">
 <meta property="og:site_name" content="SID3&#39;s Blog">
-<meta property="og:description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.安装内核调试工具包（KDK） 在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.">
+<meta property="og:description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.搭建调试环境在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/2.png">
-<meta property="og:image" content="https://imgchr.com/i/ian8uF">
-<meta property="og:updated_time" content="2018-10-15T13:23:03.003Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/15/iaMmAH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/15/ian8uF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/15/ianruD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/15/iaQ6QP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/15/iaQszt.png">
+<meta property="og:updated_time" content="2018-10-15T14:42:17.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS内核调试初探">
-<meta name="twitter:description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.安装内核调试工具包（KDK） 在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.">
+<meta name="twitter:description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.搭建调试环境在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.">
 <meta name="twitter:image" content="http://yoursite.com/2018/10/15/macOS内核调试初探/1.png">
 
 
@@ -326,19 +373,13 @@
 
       
         <p>最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb.</p>
-<h3 id="1-安装内核调试工具包（KDK）"><a href="#1-安装内核调试工具包（KDK）" class="headerlink" title="1.安装内核调试工具包（KDK）"></a>1.安装内核调试工具包（KDK）</h3><ol>
-<li><p>在 <a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a> 这一网站上下载需要的KDK.<br><img src="/2018/10/15/macOS内核调试初探/1.png" alt="KDK下载界面"></p>
-<a id="more"></a>
-<p>然后在虚拟机中安装</p>
-</li>
-<li><p>关闭系统SIP，开机的时候按Command+R进入恢复模式，然后在终端输入csrutil disable，重启，查看SIP是否关闭.<br><img src="/2018/10/15/macOS内核调试初探/2.png" alt="查看SIP是否关闭"></p>
-</li>
-<li><p>替换内核，KDK安装在/Library/Developer/下，将其目录下的kernel.development拷贝到/System/Library/Kernels/中。<br>在终端中执行命令：</p>
-</li>
-</ol>
-<p><code>sudo cp /Library/Developer/KDKs/KDK_10.12.6_16G29.kdk/System/Library/Kernels/kernel.development /System/Library/Kernels/</code></p>
-<p>  然后输入命令设置boot-args，使用nvram将虚拟机设置成调试模式：</p>
-<p><code>sudo nvram boot-args=&quot;debug=0x141 kext-dev-mode=1 kcsuffix=development pmuflags=1 -v&quot;</code></p>
+<h3 id="1-搭建调试环境"><a href="#1-搭建调试环境" class="headerlink" title="1.搭建调试环境"></a>1.搭建调试环境</h3><p>在 <a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a> 这一网站上下载需要的KDK.<br><img src="/2018/10/15/macOS内核调试初探/1.png" alt="KDK下载界面"><br><a id="more"></a><br>然后在虚拟机中安装</p>
+<p>关闭系统SIP，开机的时候按Command+R进入恢复模式，然后在终端输入<code>csrutil disable</code>，重启，查看SIP是否关闭.<br><img src="https://s1.ax1x.com/2018/10/15/iaMmAH.png" alt="查看SIP是否关闭"></p>
+<p>替换内核，KDK安装在/Library/Developer/下，将其目录下的kernel.development拷贝到/System/Library/Kernels/中。<br>在终端中执行命令：</p>
+<pre><code>sudo cp /Library/Developer/KDKs/KDK_10.12.6_16G29.kdk/System/Library/Kernels/kernel.development /System/Library/Kernels/</code></pre>
+
+<p>然后输入命令设置boot-args，使用nvram将虚拟机设置成调试模式：</p>
+<p>  <code>sudo nvram boot-args=&quot;debug=0x141 kext-dev-mode=1 kcsuffix=development pmuflags=1 -v&quot;</code></p>
 <ul>
 <li><p>boot-args：系统的启动参数</p>
 </li>
@@ -351,14 +392,21 @@
 <li><p>pmuflags=1关闭定时器</p>
 </li>
 <li><p>-v显示内核加载信息.</p>
-<p>然后再清除kext缓存</p>
 </li>
 </ul>
+<p>然后再清除kext缓存</p>
 <p><code>sudo kextcache -invalidate /</code></p>
-<p>  目的是让虚拟机系统的kext cache无效，使用新的内核调试.</p>
-<ol start="4">
-<li>查看虚拟机的网络配置信息，方便之后的远程连接调试，使用命令ifconfig即可查看.<br><img src="https://imgchr.com/i/ian8uF" alt="查看虚拟机ip"></li>
-</ol>
+<p>目的是让虚拟机系统的kext cache无效，使用新的内核调试.</p>
+<p>查看虚拟机的网络配置信息，方便之后的远程连接调试，使用命令ifconfig即可查看.<br><img src="https://s1.ax1x.com/2018/10/15/ian8uF.png" alt="查看虚拟机ip"></p>
+<p>在虚拟机中启动lldb，然后创建内核调试任务</p>
+<pre><code>target create /Library/Developer/KDKs/KDK_10.12.6_16G29.kdk/System/Library/Kernels/kernel.development</code></pre>
+
+<p><img src="https://s1.ax1x.com/2018/10/15/ianruD.png" alt="创建内核调试任务"></p>
+<p>然后重启虚拟机，可以看到提示远程连接的信息</p>
+<p>然后在主机中启动lldb，然后输入<code>kdp-remote 172.16.196.128</code></p>
+<p><img src="https://s1.ax1x.com/2018/10/15/iaQ6QP.png" alt="在本机远程连接"></p>
+<p>当在虚拟机中看到<code>Connected to remote debugger</code>时，就代表连接上了</p>
+<p><img src="https://s1.ax1x.com/2018/10/15/iaQszt.png" alt="远程调试连接成功"></p>
 
       
     </div>
@@ -522,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装内核调试工具包（KDK）"><span class="nav-number">1.</span> <span class="nav-text">1.安装内核调试工具包（KDK）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-搭建调试环境"><span class="nav-number">1.</span> <span class="nav-text">1.搭建调试环境</span></a></li></ol></div>
             
 
           </div>
