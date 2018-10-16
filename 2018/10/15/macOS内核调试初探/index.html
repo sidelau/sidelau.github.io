@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/15/ianruD.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/15/iaQ6QP.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/15/iaQszt.png">
-<meta property="og:updated_time" content="2018-10-15T14:42:17.754Z">
+<meta property="og:updated_time" content="2018-10-15T14:48:29.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS内核调试初探">
 <meta name="twitter:description" content="最近在开发macOS的内核扩展，由于目前对macOS内核还不是很了解，所开发的kext至高兼容到OS X 10.11，于是决定试着调试一下内核，一窥究竟。自己的调试环境是vm + macOS Sierra 10.12.6 + lldb. 1.搭建调试环境在 https://developer.apple.com/download/more/ 这一网站上下载需要的KDK.">
@@ -407,6 +407,10 @@
 <p><img src="https://s1.ax1x.com/2018/10/15/iaQ6QP.png" alt="在本机远程连接"></p>
 <p>当在虚拟机中看到<code>Connected to remote debugger</code>时，就代表连接上了</p>
 <p><img src="https://s1.ax1x.com/2018/10/15/iaQszt.png" alt="远程调试连接成功"></p>
+<p>到这里内核调试的环境就算是搭好啦!</p>
+<h3 id="2-lldb命令"><a href="#2-lldb命令" class="headerlink" title="2.lldb命令"></a>2.lldb命令</h3><blockquote>
+<p>Reference: <a href="http://ddeville.me/2015/08/kernel-debugging-with-lldb-and-vmware-fusion" target="_blank" rel="noopener">http://ddeville.me/2015/08/kernel-debugging-with-lldb-and-vmware-fusion</a></p>
+</blockquote>
 
       
     </div>
@@ -570,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-搭建调试环境"><span class="nav-number">1.</span> <span class="nav-text">1.搭建调试环境</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-搭建调试环境"><span class="nav-number">1.</span> <span class="nav-text">1.搭建调试环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-lldb命令"><span class="nav-number">2.</span> <span class="nav-text">2.lldb命令</span></a></li></ol></div>
             
 
           </div>
